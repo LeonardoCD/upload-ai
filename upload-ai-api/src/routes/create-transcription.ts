@@ -18,7 +18,7 @@ export async function createTranscriptionRoute(app: FastifyInstance) {
 
     const { prompt } = bodySchema.parse(req.body);
 
-    // Enontra o vídeo ou retorna um erro
+    // Encontra o vídeo ou retorna um erro
     const video = await prisma.video.findUniqueOrThrow({
       where: {
         id: videoId,
