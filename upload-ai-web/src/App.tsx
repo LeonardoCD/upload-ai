@@ -16,7 +16,7 @@ import PromptSelect from "./components/prompt-select";
 import { useState } from "react";
 
 export function App() {
-  const [temperature, setTemperature] = useState(0.5)
+  const [temperature, setTemperature] = useState(0.5);
 
   function handlePromptSelected(template: string) {
     console.log(template);
@@ -93,7 +93,13 @@ export function App() {
 
             <div className="space-y-4">
               <Label>Temperatura</Label>
-              <Slider min={0} max={1} step={0.1} value={[temperature]} onValueChange={value => setTemperature(value[0])} />
+              <Slider
+                min={0}
+                max={1}
+                step={0.1}
+                value={[temperature]}
+                onValueChange={(value) => setTemperature(value[0])}
+              />
               <span className="block text-sm text-muted-foreground italic leading-relaxed">
                 Valores mais altor tendem a deixar o resultado mais criativo e
                 com possíveis erros.
