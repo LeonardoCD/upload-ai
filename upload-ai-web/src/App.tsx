@@ -1,13 +1,23 @@
-import { Github, Wand2 } from 'lucide-react'
+import { Github, Wand2 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Separator } from "./components/ui/separator";
 import { Textarea } from "./components/ui/textarea";
 import { Label } from "./components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./components/ui/select";
 import { Slider } from "./components/ui/slider";
-import { VideoInputForm } from './components/video-input-form';
+import { VideoInputForm } from "./components/video-input-form";
+import PromptSelect from "./components/prompt-select";
 
 export function App() {
+  function handlePromptSelected(template: string) {
+    console.log(template);
+  }
   return (
     <div className="min-h-screen flex flex-col">
       <div className="px-6 py-3 flex items-center justify-between border-b">
@@ -42,7 +52,10 @@ export function App() {
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Lembre-se: você pode utilizar a variável <code className="text-violet-400">{`{transcription}`}</code> no seu prompt para adicionar o conteúdo da transcrição do vídeo selecionado.
+            Lembre-se: você pode utilizar a variável{" "}
+            <code className="text-violet-400">{`{transcription}`}</code> no seu
+            prompt para adicionar o conteúdo da transcrição do vídeo
+            selecionado.
           </p>
         </div>
 
@@ -54,15 +67,7 @@ export function App() {
           <form className="space-y-6">
             <div className="space-y-2">
               <Label>Prompt</Label>
-              <Select>
-                <SelectTrigger>
-                  <SelectValue placeholder="Selecione um prompt..." />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="title">Título do YouTube</SelectItem>
-                  <SelectItem value="description">Descrição do YouTube</SelectItem>
-                </SelectContent>
-              </Select>
+              <PromptSelect onPromptSelected={handlePromptSelected} />
             </div>
 
             <div className="space-y-2">
@@ -84,13 +89,10 @@ export function App() {
 
             <div className="space-y-4">
               <Label>Temperatura</Label>
-              <Slider
-                min={0}
-                max={1}
-                step={0.1}
-              />
+              <Slider min={0} max={1} step={0.1} />
               <span className="block text-sm text-muted-foreground italic leading-relaxed">
-                Valores mais altor tendem a deixar o resultado mais criativo e com possíveis erros.
+                Valores mais altor tendem a deixar o resultado mais criativo e
+                com possíveis erros.
               </span>
             </div>
 
@@ -104,5 +106,5 @@ export function App() {
         </aside>
       </main>
     </div>
-  )
+  );
 }
